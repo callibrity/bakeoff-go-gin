@@ -1,6 +1,6 @@
 CREATE TABLE artists
 (
-    id   varchar(32) PRIMARY KEY,
-    name VARCHAR(32) NOT NULL,
-    genre VARCHAR(32) NOT NULL
+    id   varchar(255) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    genre VARCHAR(255) NOT NULL
 );
