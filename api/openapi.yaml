@@ -1,0 +1,156 @@
+openapi: 3.0.1
+info:
+  description: Simple REST API
+  title: Bakeoff API
+  version: "1.0"
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+paths:
+  /api/artists/{id}:
+    delete:
+      operationId: deleteArtist
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - artist-resource
+    get:
+      operationId: getArtistById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artist'
+          description: OK
+      tags:
+      - artist-resource
+    put:
+      operationId: updateArtist
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateArtistRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artist'
+          description: OK
+      tags:
+      - artist-resource
+  /api/artists:
+    get:
+      operationId: listArtists
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Artist'
+                type: array
+          description: OK
+      tags:
+      - artist-resource
+    post:
+      operationId: createArtist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateArtistRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artist'
+          description: OK
+      tags:
+      - artist-resource
+components:
+  schemas:
+    UpdateArtistRequest:
+      example:
+        name: name
+        genre: Rock
+      properties:
+        name:
+          type: string
+        genre:
+          enum:
+          - Rock
+          - Pop
+          - Country
+          - Western
+          type: string
+      required:
+      - genre
+      - name
+      type: object
+    Artist:
+      example:
+        name: name
+        genre: Rock
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        genre:
+          enum:
+          - Rock
+          - Pop
+          - Country
+          - Western
+          type: string
+      type: object
+    CreateArtistRequest:
+      example:
+        name: name
+        genre: Rock
+      properties:
+        name:
+          type: string
+        genre:
+          enum:
+          - Rock
+          - Pop
+          - Country
+          - Western
+          type: string
+      required:
+      - genre
+      - name
+      type: object

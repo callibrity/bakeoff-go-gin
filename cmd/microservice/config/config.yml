@@ -1,0 +1,6 @@
+db:
+  host: localhost
+  port: 5432
+  name: postgres
+  user: postgres
+  pass: changeme
