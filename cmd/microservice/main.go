@@ -25,6 +25,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	pg.DB.SetMaxIdleConns(5)
+	pg.DB.SetMaxOpenConns(25)
 
 	driver, err := postgres.WithInstance(pg.DB, &postgres.Config{})
 	if err != nil {
