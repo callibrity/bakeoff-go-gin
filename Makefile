@@ -2,7 +2,7 @@
 .PHONY: build
 build:
 	@echo "Building local image..."
-	@docker build --platform amd64 -t callibrity/bakeoff-go-gin:1.0.1 .
+	@docker build --platform amd64 -t callibrity/bakeoff-go-gin:1.0.2 .
 
 # Stack
 .PHONY:	stop
